@@ -4,6 +4,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import { Login } from "./components/Login/Login";
+// I could change tsconfig, but I hate to do it :)
+const Image = require('./assets/background.jfif');
 
 const darkTheme = createTheme({
   palette: {
@@ -22,7 +24,7 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <Container maxWidth={false} disableGutters={true} sx={{height: '100vh'}}>
+      <Container maxWidth={false} disableGutters={true} sx={{height: '100vh', backgroundImage: `url(${Image})`}}>
         <CssBaseline />
         <Routes>
           <Route path="/" element={redirectToLogin} />

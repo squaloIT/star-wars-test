@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
+  const redirectToLogin = (
+    <Navigate
+      to={{
+        pathname: "/login",
+      }}
+    />
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Routes>
+        <Route path="/" element={redirectToLogin} />
+        <Route path="/login" element={<h1>LOGIN</h1>} />
+        <Route
+          path="overview/:category"
+          element={<h1>TESTIRANJE KATEGORIJE</h1>}
+        />
+        <Route
+          path="category/:category/:detail_id"
+          element={<h1>TESTIRANJE KATEGORIJE I PROJECT DETAILS</h1>}
+        />
+      </Routes>
   );
 }
 

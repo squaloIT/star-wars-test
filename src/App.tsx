@@ -3,6 +3,7 @@ import { NotFound } from "./components/NotFound/NotFound";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
+import { Login } from "./components/Login/Login";
 
 const darkTheme = createTheme({
   palette: {
@@ -21,11 +22,11 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <Container maxWidth={false} disableGutters={true}>
+      <Container maxWidth={false} disableGutters={true} sx={{height: '100vh'}}>
         <CssBaseline />
         <Routes>
           <Route path="/" element={redirectToLogin} />
-          <Route path="/login" element={<h1>LOGIN</h1>} />
+          <Route path="/login" element={<Login/>} />
           <Route
             path="overview/:category"
             element={<h1>TESTIRANJE KATEGORIJE</h1>}

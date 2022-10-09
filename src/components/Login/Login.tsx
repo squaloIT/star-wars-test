@@ -1,6 +1,9 @@
-import { Box, Button, Container, TextField } from "@mui/material";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Login = () => {
+  const { validationError, onAuth, changeField } = useAuth();
+
   return (
     <Container
       sx={{
@@ -36,20 +39,35 @@ export const Login = () => {
           }}
         >
           <Box width="100%">
+            <Typography
+              variant="body2"
+              align="center"
+              gutterBottom
+              sx={{
+                color: "error.dark",
+                fontWeight: "bold",
+                mb: "5px",
+                p: "5px",
+              }}
+            >
+              {validationError}
+            </Typography>
             <TextField
-              id="outlined-basic"
+              name="username"
               label="Username:"
               variant="outlined"
-              defaultValue="John Doe"
               fullWidth={true}
+              autoFocus
               required
+              onChange={changeField}
             />
             <TextField
-              id="outlined-password-input"
+              name="password"
               sx={{ marginTop: "20px" }}
               label="Password:"
               variant="outlined"
               type="password"
+              onChange={changeField}
               fullWidth={true}
               required
             />
@@ -65,6 +83,7 @@ export const Login = () => {
                 opacity: [0.8],
               },
             }}
+            onClick={onAuth}
           >
             Login
           </Button>

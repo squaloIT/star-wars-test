@@ -5,7 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import { Login } from "./components/Login/Login";
 // I could change tsconfig, but I hate to do it :)
-const Image = require('./assets/background.jfif');
+const Image = require("./assets/background.jfif");
 
 const darkTheme = createTheme({
   palette: {
@@ -14,21 +14,32 @@ const darkTheme = createTheme({
 });
 
 function App() {
-  const redirectToLogin = (
+  const didUserLoggedThisMonth = (): boolean => {
+    const timestamp = Number(localStorage.getItem("starWarsLoginDate"))
+    const timestampNow = new Date().getTime()
+
+    return (timestampNow - timestamp) > 1000 * 60 * 60 * 25* 30;
+  }
+  
+  const redirectToLogin =  (
     <Navigate
       to={{
-        pathname: "/login",
+        pathname: didUserLoggedThisMonth() ? "/login" : '/overview/planets',
       }}
     />
   );
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <Container maxWidth={false} disableGutters={true} sx={{height: '100vh', backgroundImage: `url(${Image})`}}>
+      <Container
+        maxWidth={false}
+        disableGutters={true}
+        sx={{ height: "100vh", backgroundImage: `url(${Image})` }}
+      >
         <CssBaseline />
         <Routes>
           <Route path="/" element={redirectToLogin} />
-          <Route path="/login" element={<Login/>} />
+          <Route path="/login" element={<Login />} />
           <Route
             path="overview/:category"
             element={<h1>TESTIRANJE KATEGORIJE</h1>}

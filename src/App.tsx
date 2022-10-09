@@ -1,9 +1,10 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, redirect } from "react-router-dom";
 import { NotFound } from "./components/NotFound/NotFound";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import { Login } from "./components/Login/Login";
+import { didUserLoggedThisMonth } from "./utils";
 // I could change tsconfig, but I hate to do it :)
 const Image = require("./assets/background.jfif");
 
@@ -13,14 +14,7 @@ const darkTheme = createTheme({
   },
 });
 
-function App() {
-  const didUserLoggedThisMonth = (): boolean => {
-    const timestamp = Number(localStorage.getItem("starWarsLoginDate"))
-    const timestampNow = new Date().getTime()
-
-    return (timestampNow - timestamp) > 1000 * 60 * 60 * 25* 30;
-  }
-  
+function App() {  
   const redirectToLogin =  (
     <Navigate
       to={{

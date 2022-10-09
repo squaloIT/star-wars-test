@@ -1,9 +1,19 @@
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import { didUserLoggedThisMonth } from "../../utils";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const { validationError, onAuth, changeField } = useAuth();
+  let navigate = useNavigate();
 
+  useEffect(() => {
+    if (!didUserLoggedThisMonth()) {
+      navigate("/overview/planets");
+    }
+  }, []);
+  
   return (
     <Container
       sx={{

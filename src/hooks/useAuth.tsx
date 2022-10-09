@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type UserCredentials = {
   username: string;
@@ -11,6 +12,7 @@ export const useAuth = () => {
     username: "",
     password: "",
   });
+  let navigate = useNavigate();
 
   const checkUserCredentials = (username: string, password: string): boolean =>
     username === "test" && password === "test";
@@ -19,8 +21,8 @@ export const useAuth = () => {
     const { username, password } = authState;
     if (checkUserCredentials(username, password)) {
       setValidationError("");
-      localStorage.setItem("starWarsLoginDate", `${new Date().getTime()}`);
-
+      localStorage.setItem(String(process.env.REACT_APP_LOGIN_DATE), `${new Date().getTime()}`);
+      navigate("/overview/planets");
       return;
     }
 

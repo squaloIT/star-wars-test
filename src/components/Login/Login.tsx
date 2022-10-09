@@ -1,8 +1,9 @@
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { didUserLoggedThisMonth } from "../../utils";
 import { useNavigate } from "react-router-dom";
+import { ContainerStyled, LoginFormStyled, LoginFormWrapperStyled } from "./LoginStyles";
 
 export const Login = () => {
   const { validationError, onAuth, changeField } = useAuth();
@@ -13,42 +14,12 @@ export const Login = () => {
       navigate("/overview/planets");
     }
   }, []);
-  
+
+
   return (
-    <Container
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <Box
-        sx={{
-          borderWidth: "2px",
-          borderStyle: "solid",
-          borderColor: "primary.dark",
-          borderRadius: "8px",
-          p: "30px",
-          transition: "padding 0.5s",
-          "&:hover": {
-            p: "0px",
-          },
-        }}
-      >
-        <Box
-          bgcolor="primary.dark"
-          p="20px"
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            borderRadius: "4px",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: "1em",
-          }}
-        >
-          <Box width="100%">
+    <ContainerStyled>
+      <LoginFormWrapperStyled>
+        <LoginFormStyled>
             <Typography
               variant="body2"
               align="center"
@@ -73,7 +44,6 @@ export const Login = () => {
             />
             <TextField
               name="password"
-              sx={{ marginTop: "20px" }}
               label="Password:"
               variant="outlined"
               type="password"
@@ -81,8 +51,6 @@ export const Login = () => {
               fullWidth={true}
               required
             />
-          </Box>
-
           <Button
             variant="contained"
             sx={{
@@ -97,8 +65,8 @@ export const Login = () => {
           >
             Login
           </Button>
-        </Box>
-      </Box>
-    </Container>
+        </LoginFormStyled>
+      </LoginFormWrapperStyled>
+    </ContainerStyled>
   );
 };

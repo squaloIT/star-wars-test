@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-type UserCredentials = {
-  username: string;
-  password: string;
-};
+import { UserCredentials } from "../types";
 
 export const useAuth = () => {
   const [validationError, setValidationError] = useState("");

@@ -29,7 +29,7 @@ function App() {
       <Container
         maxWidth={false}
         disableGutters={true}
-        sx={{ height: "100vh", backgroundImage: `url(${Image})` }}
+        sx={{  backgroundImage: `url(${Image})` }}
       >
         <CssBaseline />
         <Routes>

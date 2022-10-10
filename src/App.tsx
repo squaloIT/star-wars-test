@@ -19,7 +19,7 @@ function App() {
   const redirectToLogin = (
     <Navigate
       to={{
-        pathname: didUserLoggedThisMonth() ? "/login" : "/overview/planets",
+        pathname: didUserLoggedThisMonth() ? "/overview/planets" : "/login",
       }}
     />
   );
@@ -60,7 +60,7 @@ function App() {
 }
 
 const ProtectedRoute = (props: any) => {
-  if (didUserLoggedThisMonth()) {
+  if (!didUserLoggedThisMonth()) {
     return <Navigate to="/login" replace />;
   }
 

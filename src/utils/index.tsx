@@ -5,5 +5,5 @@ export const didUserLoggedThisMonth = (): boolean => {
   }
   const timestamp = Number(ls)
   const timestampNow = new Date().getTime();
-  return timestampNow - timestamp > 1000 * 60 * 60 * 25 * 30;
+  return timestampNow - timestamp <= 1000 * 60 * 60 * 25 * 30;
 };

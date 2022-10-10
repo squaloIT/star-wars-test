@@ -10,7 +10,7 @@ export const Login = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (!didUserLoggedThisMonth()) {
+    if (didUserLoggedThisMonth()) {
       navigate("/overview/planets");
     }
   }, []);

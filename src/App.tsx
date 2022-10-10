@@ -5,6 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import { Login } from "./components/Login/Login";
 import { didUserLoggedThisMonth } from "./utils";
+import { Overview } from "./components/Overview/Overview";
 // I could change tsconfig, but I hate to do it :)
 const Image = require("./assets/background.jfif");
 
@@ -14,11 +15,11 @@ const darkTheme = createTheme({
   },
 });
 
-function App() {  
-  const redirectToLogin =  (
+function App() {
+  const redirectToLogin = (
     <Navigate
       to={{
-        pathname: didUserLoggedThisMonth() ? "/login" : '/overview/planets',
+        pathname: didUserLoggedThisMonth() ? "/login" : "/overview/planets",
       }}
     />
   );
@@ -36,11 +37,19 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route
             path="overview/:category"
-            element={<h1>TESTIRANJE KATEGORIJE</h1>}
+            element={
+              <ProtectedRoute>
+                <Overview />
+              </ProtectedRoute>
+            }
           />
           <Route
             path="category/:category/:detail_id"
-            element={<h1>TESTIRANJE KATEGORIJE I PROJECT DETAILS</h1>}
+            element={
+              <ProtectedRoute>
+                <h1>TESTIRANJE KATEGORIJE I PROJECT DETAILS</h1>
+              </ProtectedRoute>
+            }
           />
 
           <Route path="*" element={<NotFound />} />
@@ -49,5 +58,13 @@ function App() {
     </ThemeProvider>
   );
 }
+
+const ProtectedRoute = (props: any) => {
+  if (didUserLoggedThisMonth()) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return props.children;
+};
 
 export default App;

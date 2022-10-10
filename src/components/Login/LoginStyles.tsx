@@ -42,6 +42,8 @@ export const LoginFormWrapperStyled = styled("div")(({ theme }) => ({
     display: "flex",
   },
 }));
+
+
 export const LoginFormStyled = styled("div")(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
@@ -53,6 +55,6 @@ export const LoginFormStyled = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
 
   [theme.breakpoints.down("sm")]: {
-    height: "60%",
+    height: "fit-content",
   },
 }));

@@ -3,13 +3,20 @@ import {
   ListItem,
   Drawer,
   Typography,
-  Button,
   Link,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const LeftSidebar = () => {
   const [isOpened, setIsOpened] = useState(true);
+  const theme = useTheme();
+  const isLessThanMD = useMediaQuery(theme.breakpoints.down('md'));
+
+  useEffect(() => {
+    setIsOpened(!isLessThanMD)
+  }, [isLessThanMD]);
 
   const list = [
     "Planets",
@@ -21,7 +28,7 @@ export const LeftSidebar = () => {
   ];
   return (
     <Drawer
-      open
+      open={isOpened}
       variant="persistent"
       sx={{
         backgroundColor: "whitesmoke",

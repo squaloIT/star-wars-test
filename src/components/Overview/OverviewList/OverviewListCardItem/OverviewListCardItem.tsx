@@ -17,20 +17,20 @@ export const OverviewListCardItem = ({
   body: string;
 }) => {
   return (
-    <Grid item xs={1} md={3}>
+    <Grid item xs={12} sm={6} lg={4} xl={3}>
       <Card
         sx={{
           border: "1px solid #FFE81F",
         }}
       >
         <CardContent>
-          <Typography variant="h5" color="text.secondary" gutterBottom>
+          <Typography variant="h5" color="text.secondary" gutterBottom sx={{ typography: { sm: { textAlign: 'center'}, xs: { textAlign: 'center'} } }}>
             {title}
           </Typography>
-          <Typography variant="h6" component="div">
+          <Typography variant="h6" component="div" sx={{ typography: { sm: { textAlign: 'center'}, xs: { textAlign: 'center'} } }}>
             {subtitle}
           </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          <Typography color="text.secondary" sx={{ mb: 1.5, typography: { sm: { textAlign: 'center'}, xs: { textAlign: 'center'} } }}>
             {body}
           </Typography>
         </CardContent>

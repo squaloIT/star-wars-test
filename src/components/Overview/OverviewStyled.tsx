@@ -20,5 +20,12 @@ export const OverviewStyled = styled('div')(({ theme }) => ({
   flexWrap: 'wrap',
   padding: '20px',
   flexDirection: "column",
+
+  [theme.breakpoints.down("lg")]: {
+    width:'70%',
+  },
+  [theme.breakpoints.down("md")]: {
+    width:'100%',
+  },
 }));
 

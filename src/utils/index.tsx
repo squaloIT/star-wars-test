@@ -1,3 +1,5 @@
+import { MainCategoryInfo } from "../types";
+
 export const didUserLoggedThisMonth = (): boolean => {
   const ls = localStorage.getItem(String(process.env.REACT_APP_LOGIN_DATE));
   if (ls === null) {
@@ -8,7 +10,10 @@ export const didUserLoggedThisMonth = (): boolean => {
   return timestampNow - timestamp <= 1000 * 60 * 60 * 25 * 30;
 };
 
-export const mapListData = (el: any, category: string | undefined) => {
+export const mapListData = (
+  el: any,
+  category: string | undefined
+): MainCategoryInfo | undefined => {
   if (category === "species") {
     return {
       title: el.name,
@@ -63,3 +68,24 @@ export const listOfRoutes = [
   "Films",
   "Species",
 ];
+
+export const mapLessImportantData = (res: any, data: any) => {
+  const info: any = {};
+  const keys = Object.keys(res).filter((key) => {
+    return (
+      res[key] != data.title &&
+      res[key] != data.subtitle &&
+      data.body.indexOf(key) == -1 &&
+      !Array.isArray(res[key]) &&
+      // res[key].indexOf("https") == -1 &&
+      key != "created" &&
+      key != "edited"
+    );
+  });
+
+  keys.forEach((key) => {
+    info[key] = res[key];
+  });
+
+  return info;
+};

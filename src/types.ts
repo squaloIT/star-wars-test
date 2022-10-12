@@ -9,3 +9,9 @@ export type UserCredentials = {
   username: string;
   password: string;
 };
+
+export type MainCategoryInfo = {
+  title: string;
+  subtitle: string;
+  body: string;
+}

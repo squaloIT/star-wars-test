@@ -14,6 +14,7 @@ export const MenuList = ({ width = ''}: { width: string}) => {
       {listOfRoutes.map((el) => (
         <ListItem
           button
+          key={el}
           sx={{
             borderBottom: "1px solid #1e1e1e",
             padding: "0px",

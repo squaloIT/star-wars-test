@@ -7,6 +7,7 @@ import { Login } from "./components/Login/Login";
 import { didUserLoggedThisMonth } from "./utils";
 import { Overview } from "./components/Overview/Overview";
 import { OverviewList } from "./components/Overview/OverviewList/OverviewList";
+import { Details } from "./components/Overview/Details/Details";
 // I could change tsconfig, but I hate to do it :)
 const Image = require("./assets/background.jfif");
 
@@ -46,7 +47,7 @@ function App() {
             }
           >
             <Route index element={<OverviewList />} />
-            <Route path=":detail_id" element={<h1>DJOKARA</h1>} />
+            <Route path=":detail_id" element={<Details />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />

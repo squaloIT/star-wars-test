@@ -6,16 +6,27 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export const OverviewListCardItem = ({
+  category,
+  id,
   title,
   subtitle,
   body,
 }: {
+  category: string | undefined;
+  id: number;
   title: string;
   subtitle: string;
   body: string;
 }) => {
+  let navigate = useNavigate();
+
+  const goToDetails = (id: number) => {
+    navigate(`/overview/${category}/${id}`);
+  }
+
   return (
     <Grid item xs={12} sm={6} lg={4} xl={3}>
       <Card
@@ -68,7 +79,7 @@ export const OverviewListCardItem = ({
             justifyContent: "center",
           }}
         >
-          <Button size="small" sx={{ color: "#FFE81F" }}>
+          <Button size="small" sx={{ color: "#FFE81F" }} onClick={() => goToDetails(id)}>
             Learn More
           </Button>
         </CardActions>

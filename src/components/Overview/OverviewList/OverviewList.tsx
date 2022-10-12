@@ -10,7 +10,7 @@ export const OverviewList = () => {
   return (
     <OverviewGridStyled container spacing={2}>
       {list.map((el) => (
-        <OverviewListCardItem {...el} key={JSON.stringify(el)} />
+        <OverviewListCardItem {...el} category={category} key={JSON.stringify(el)} />
       ))}
     </OverviewGridStyled>
   );

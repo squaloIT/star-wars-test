@@ -1,18 +1,15 @@
-import {
-  Box,
-  Breadcrumbs,
-  Drawer,
-  Link,
-  Typography,
-} from "@mui/material";
+import { Box, Breadcrumbs, Drawer, Link, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useOpenMediaQuery } from "../../../hooks/useOpenMediaQuery";
 import { MenuList } from "../MenuList/MenuList";
+import { useBreadcrumbs } from "../../../hooks/useBreadcrumbs";
 
 export const Header = () => {
   const { category } = useParams();
-  const {isOpened, setIsOpened, isMatching} = useOpenMediaQuery(false)
+  const { isOpened, setIsOpened, isMatching } = useOpenMediaQuery(false);
+  const { generateBreadcrumbs } = useBreadcrumbs();
+  const crumbs = generateBreadcrumbs();
 
   const openMenu = () => {
     setIsOpened((prevValue) => !prevValue);
@@ -31,13 +28,15 @@ export const Header = () => {
           <Link underline="hover" color="inherit">
             overview
           </Link>
-          <Link
-            underline="hover"
-            color="inherit"
-            href={`/overview/${category}`}
-          >
-            {category}
-          </Link>
+          {crumbs.map((crumb) => 
+            <Link
+              underline="hover"
+              color="inherit"
+              href={`${crumb.href}`}
+            >
+              {crumb.text}
+            </Link>
+          )}
         </Breadcrumbs>
 
         {isMatching && (
@@ -57,12 +56,8 @@ export const Header = () => {
         </Typography>
       </Box>
 
-      <Drawer
-        open={isOpened}
-        onClose={() => setIsOpened(false)}
-        anchor="top"
-      >
-        <MenuList width='100%' />
+      <Drawer open={isOpened} onClose={() => setIsOpened(false)} anchor="top">
+        <MenuList width="100%" />
       </Drawer>
     </div>
   );

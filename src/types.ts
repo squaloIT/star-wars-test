@@ -15,3 +15,8 @@ export type MainCategoryInfo = {
   subtitle: string;
   body: string;
 }
+
+export type Crumb = {
+  href: string; 
+  text: string | undefined;
+}

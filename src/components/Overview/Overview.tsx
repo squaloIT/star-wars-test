@@ -1,6 +1,6 @@
+import { Outlet } from "react-router-dom";
 import { Header } from "./Header/Header";
 import { LeftSidebar } from "./LeftSidebar/LeftSidebar";
-import { OverviewList } from "./OverviewList/OverviewList";
 import {
   OverviewStyled,
   OverviewWrapperStyled,
@@ -13,7 +13,7 @@ export const Overview = () => {
 
       <OverviewStyled>
         <Header />
-        <OverviewList />
+        <Outlet />
       </OverviewStyled>
     </OverviewWrapperStyled>
   );

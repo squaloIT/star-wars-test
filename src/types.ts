@@ -1,12 +1,22 @@
-
 export type ListItem = {
-    title: string;
-    subtitle: string;
-    body: string;
+  id: number;
+  title: string;
+  subtitle: string;
+  body: string;
 };
 
 export type UserCredentials = {
-    username: string;
-    password: string;
-  };
-  
+  username: string;
+  password: string;
+};
+
+export type MainCategoryInfo = {
+  title: string;
+  subtitle: string;
+  body: string;
+}
+
+export type Crumb = {
+  href: string; 
+  text: string | undefined;
+}

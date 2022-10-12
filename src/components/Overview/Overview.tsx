@@ -15,7 +15,6 @@ export const Overview = () => {
         <Header />
         <OverviewList />
       </OverviewStyled>
-
     </OverviewWrapperStyled>
   );
 };

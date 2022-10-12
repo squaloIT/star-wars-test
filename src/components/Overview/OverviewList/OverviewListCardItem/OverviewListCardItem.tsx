@@ -24,13 +24,41 @@ export const OverviewListCardItem = ({
         }}
       >
         <CardContent>
-          <Typography variant="h5" color="text.secondary" gutterBottom sx={{ typography: { sm: { textAlign: 'center'}, xs: { textAlign: 'center'} } }}>
+          <Typography
+            variant="h5"
+            color="text.secondary"
+            gutterBottom
+            sx={{
+              typography: {
+                sm: { textAlign: "center" },
+                xs: { textAlign: "center" },
+              },
+            }}
+          >
             {title}
           </Typography>
-          <Typography variant="h6" component="div" sx={{ typography: { sm: { textAlign: 'center'}, xs: { textAlign: 'center'} } }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              typography: {
+                sm: { textAlign: "center" },
+                xs: { textAlign: "center" },
+              },
+            }}
+          >
             {subtitle}
           </Typography>
-          <Typography color="text.secondary" sx={{ mb: 1.5, typography: { sm: { textAlign: 'center'}, xs: { textAlign: 'center'} } }}>
+          <Typography
+            color="text.secondary"
+            sx={{
+              mb: 1.5,
+              typography: {
+                sm: { textAlign: "center" },
+                xs: { textAlign: "center" },
+              },
+            }}
+          >
             {body}
           </Typography>
         </CardContent>

@@ -20,7 +20,6 @@ export const LeftSidebar = () => {
         position: "relative",
       }}
     >
-
       <MenuList width='250px' />
     </Drawer>
   );

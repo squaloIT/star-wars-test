@@ -6,6 +6,7 @@ import Container from "@mui/material/Container";
 import { Login } from "./components/Login/Login";
 import { didUserLoggedThisMonth } from "./utils";
 import { Overview } from "./components/Overview/Overview";
+import { OverviewList } from "./components/Overview/OverviewList/OverviewList";
 // I could change tsconfig, but I hate to do it :)
 const Image = require("./assets/background.jfif");
 
@@ -29,12 +30,13 @@ function App() {
       <Container
         maxWidth={false}
         disableGutters={true}
-        sx={{  backgroundImage: `url(${Image})` }}
+        sx={{ backgroundImage: `url(${Image})` }}
       >
         <CssBaseline />
         <Routes>
           <Route path="/" element={redirectToLogin} />
           <Route path="/login" element={<Login />} />
+
           <Route
             path="overview/:category"
             element={
@@ -42,15 +44,10 @@ function App() {
                 <Overview />
               </ProtectedRoute>
             }
-          />
-          <Route
-            path="category/:category/:detail_id"
-            element={
-              <ProtectedRoute>
-                <h1>TESTIRANJE KATEGORIJE I PROJECT DETAILS</h1>
-              </ProtectedRoute>
-            }
-          />
+          >
+            <Route index element={<OverviewList />} />
+            <Route path=":detail_id" element={<h1>DJOKARA</h1>} />
+          </Route>
 
           <Route path="*" element={<NotFound />} />
         </Routes>

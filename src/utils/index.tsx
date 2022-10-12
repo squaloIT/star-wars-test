@@ -75,7 +75,7 @@ export const mapLessImportantData = (res: any, data: any) => {
     return (
       res[key] != data.title &&
       res[key] != data.subtitle &&
-      data.body.indexOf(key) == -1 &&
+      data.body?.indexOf(key) == -1 &&
       !Array.isArray(res[key]) &&
       // res[key].indexOf("https") == -1 &&
       key != "created" &&

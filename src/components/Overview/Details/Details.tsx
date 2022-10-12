@@ -1,12 +1,14 @@
 import { List, ListItem, Paper, Typography } from "@mui/material";
 import { useTheme } from "@mui/system";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { MainCategoryInfo } from "../../../types";
 import { mapLessImportantData, mapListData } from "../../../utils";
 
 export const Details = () => {
   const { category, detail_id } = useParams();
+  let navigate = useNavigate();
+
   const [mainInfo, setMainInfo] = useState<MainCategoryInfo>({
     title: "",
     body: "",
@@ -18,11 +20,16 @@ export const Details = () => {
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/${category}/${detail_id}`, {
       method: "GET",
-      cache: "force-cache",
     })
       .then((res) => res.json())
       .then((res) => {
         const data = mapListData(res, category);
+        if(res.detail === 'Not found') {
+          alert("Resource not found; Server error")
+          setTimeout(() => {
+            navigate(`/overview/${category}`);
+          }, 1000)
+        }
         if (!data) {
           setMainInfo({
             title: "There is no category with that name",

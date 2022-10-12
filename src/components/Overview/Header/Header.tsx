@@ -33,6 +33,7 @@ export const Header = () => {
               underline="hover"
               color="inherit"
               href={`${crumb.href}`}
+              key={crumb.text}
             >
               {crumb.text}
             </Link>

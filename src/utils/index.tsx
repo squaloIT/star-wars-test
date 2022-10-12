@@ -1,9 +1,9 @@
 export const didUserLoggedThisMonth = (): boolean => {
   const ls = localStorage.getItem(String(process.env.REACT_APP_LOGIN_DATE));
-  if(ls === null) {
-    return false
+  if (ls === null) {
+    return false;
   }
-  const timestamp = Number(ls)
+  const timestamp = Number(ls);
   const timestampNow = new Date().getTime();
   return timestampNow - timestamp <= 1000 * 60 * 60 * 25 * 30;
 };
@@ -53,4 +53,13 @@ export const mapListData = (el: any, category: string | undefined) => {
       body: `${el.climate}`,
     };
   }
-}
+};
+
+export const listOfRoutes = [
+  "Planets",
+  "Starships",
+  "People",
+  "Vehicles",
+  "Films",
+  "Species",
+];

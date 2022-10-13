@@ -25,10 +25,16 @@ export const Details = () => {
       .then((res) => {
         const data = mapListData(res, category);
         if(res.detail === 'Not found') {
-          alert("Resource not found; Server error")
+          
+          setMainInfo({
+            subtitle: "Resource not found; Server error",
+            body: '',
+            title: ''
+          });
           setTimeout(() => {
             navigate(`/overview/${category}`);
-          }, 1000)
+          }, 2000)
+          return;
         }
         if (!data) {
           setMainInfo({
@@ -78,7 +84,7 @@ export const Details = () => {
           },
         }}
       >
-        Classification: {mainInfo.subtitle}
+        {mainInfo.subtitle}
       </Typography>
       <Typography
         variant="body1"

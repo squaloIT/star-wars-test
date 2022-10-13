@@ -29,5 +29,9 @@ export const useList = (category: string | undefined) => {
       });
   }, [category]);
 
-  return list;
+  const mapAndSetList = (data: any, category: string) => {
+    setList(mapListToFormat(data, category))
+  }
+
+  return {list, mapAndSetList};
 };

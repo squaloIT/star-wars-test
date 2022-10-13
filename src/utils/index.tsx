@@ -89,3 +89,12 @@ export const mapLessImportantData = (res: any, data: any) => {
 
   return info;
 };
+
+
+export const debounce = (func: Function, timeout = 1000) => {
+  let timer: any;
+  return (...args: any) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => { func.apply(this, args); }, timeout);
+  };
+}

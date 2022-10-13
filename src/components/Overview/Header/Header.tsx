@@ -1,7 +1,6 @@
 import {
   Box,
   Breadcrumbs,
-  Button,
   Drawer,
   Link,
   TextField,
@@ -14,8 +13,9 @@ import { useOpenMediaQuery } from "../../../hooks/useOpenMediaQuery";
 import { MenuList } from "../MenuList/MenuList";
 import { useBreadcrumbs } from "../../../hooks/useBreadcrumbs";
 import SearchIcon from "@mui/icons-material/Search";
+import { debounce } from "../../../utils";
 
-export const Header = () => {
+export const Header = ({ mapAndSetList }: { mapAndSetList: Function }) => {
   const { category, detail_id } = useParams();
   const theme = useTheme();
 
@@ -35,6 +35,17 @@ export const Header = () => {
 
   const { generateBreadcrumbs } = useBreadcrumbs();
   const crumbs = generateBreadcrumbs();
+
+  const fetchData = (value: string) => {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/${category}?search=${value}`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        mapAndSetList(res, category)
+      })
+      .catch((err) => console.error(err));
+  };
 
   return (
     <div>
@@ -101,6 +112,7 @@ export const Header = () => {
               variant="outlined"
               fullWidth
               color="info"
+              onKeyUp={debounce((e: any) => fetchData(e.target.value), 1000)}
             />
           </Box>
         )}
@@ -125,10 +137,13 @@ export const Header = () => {
             padding: "40px 20px",
           }}
         >
-          <TextField label="Search" variant="standard" fullWidth color="info" />
-          <Button variant="contained" size="small" sx={{ marginLeft: "20px" }}>
-            Search
-          </Button>
+          <TextField
+            label="Search"
+            variant="standard"
+            fullWidth
+            color="info"
+            onKeyUp={debounce((e: any) => fetchData(e.target.value), 1000)}
+          />
         </Box>
       </Drawer>
     </div>
